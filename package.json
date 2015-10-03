@@ -1,0 +1,58 @@
+{
+  "name": "vpvp-vpd",
+  "version": "0.0.0-alpha",
+  "description": "MikuMikuDance Vocaloid-Pose-Data(.vpd) Parser",
+
+  "main": "lib",
+  "scripts": {
+    "prepublish": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
+    "compile": "coffee --output lib --bare --compile src",
+    
+    "start": "jasminetea --file index.coffee --watch",
+    "test": "jasminetea --file index.coffee --lint --cover --report",
+
+    "localhost": "zuul test --ui jasmine2 --local 59798 --open",
+    "test-cloud": "zuul test",
+
+    "prebuild": "$(opc bower opc-scripts.build) | exorcist $(opc bower name).js.map -b . > $(opc bower name).js",
+    "build": "$(opc bower opc-scripts.uglify)",
+    "postbuild": "rm $(opc bower name).js $(opc bower name).js.map && wc -c $(opc bower main)",
+    "update": "git tag v$(opc package version) && git push --tags"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm test"
+    }
+  },
+
+  "dependencies": {
+    "iconv-lite": "^0.4.13"
+  },
+  "devDependencies": {
+    "brfs": "^1.4.1",
+    "browserify": "^11.2.0",
+    "coffeeify": "^1.1.0",
+    "ghooks": "^0.3.2",
+    "jasminetea": "^0.2.1",
+    "object-parser-cli": "0.0.1-alpha.1",
+    "zuul": "^3.6.0"
+  },
+  
+  "keywords": [
+    "Vocaloid",
+    "VPVP",
+    "MikuMikuDance",
+    "MMD",
+    "VPD"
+  ],
+  "author": "59naga <i59naga@icloud.com> (http://berabou.me)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/59naga/vpvp-vpd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/59naga/vpvp-vpd/issues"
+  },
+  "homepage": "https://github.com/59naga/vpvp-vpd#readme"
+}

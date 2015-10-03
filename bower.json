@@ -1,0 +1,44 @@
+{
+  "name": "vpvp-vpd",
+  "main": "vpvp-vpd.min.js",
+  "description": "MikuMikuDance Vocaloid-Pose-Data(.vpd) Parser",
+
+  "opc-scripts": {
+    "build": [
+      "browserify ./src",
+      "--transform coffeeify",
+      "--standalone vpvp-vpd",
+      "--extension .coffee",
+      "--debug"
+    ],
+    "uglify": [
+      "uglifyjs",
+
+      "vpvp-vpd.js",
+      "--in-source-map",
+      "vpvp-vpd.js.map",
+
+      "--mangle",
+      "--compress",
+
+      "--output",
+      "vpvp-vpd.min.js",
+      "--source-map",
+      "vpvp-vpd.min.js.map"
+     ]
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "*.coffee",
+    "src",
+    "test"
+  ],
+
+  "authors": [
+    "59naga <i59naga@icloud.com>"
+  ],
+  "homepage": "https://github.com/59naga/vpvp-vpd",
+  "license": "MIT"
+}
