@@ -58,6 +58,10 @@ console.log(data);
 * __vpvp-vpd__
 -->
 
+# Related projects
+* [vpvp-vmd](https://github.com/59naga/vpvp-vmd/)
+* __vpvp-vpd__
+
 License
 ---
 [MIT][License]
