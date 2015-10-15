@@ -35,6 +35,7 @@
     "ghooks": "^0.3.2",
     "jasminetea": "^0.2.1",
     "object-parser-cli": "0.0.1-alpha.1",
+    "pako": "^0.2.8",
     "zuul": "^3.6.0"
   },
   
