@@ -49,6 +49,49 @@ console.log(data);
 // };
 ```
 
+## vpd.mangle(`{header,bones}`) -> chunks
+
+座標の変更が必要なボーンの情報だけを配列で返します。
+
+```js
+// Dependencies
+var vpd= require('vpvp-vpd');
+var fs= require('fs');
+
+// Main
+var vpdFile= fs.readFileSync('./pose.vpd');
+var chunks= vpd.mangle(vpd.parse(vpdFile));
+console.log(chunks);
+
+// ['センター', 0.939673, -1.35, 0.129938, 0, 0, 0, 1, '上半身', ...]
+```
+
+`pako`などの圧縮ライブラリを使用してbase64に変換すれば、2000文字未満に収めることも可能です。これは、webアプリケーションでデータを公開する場合に有用です。
+
+## vpd.restore(chunks) -> bones
+
+配列をオブジェクトに戻します。
+
+```js
+// Dependencies
+var vpd= require('vpvp-vpd');
+var fs= require('fs');
+
+// Main
+var vpdFile= fs.readFileSync('./pose.vpd');
+var bones= vpd.restore(vpd.mangle(vpd.parse(vpdFile)));
+console.log(bones);
+
+// [
+//   {
+//     name: 'センター',
+//     position: [ 0.939673, -1.35, 0.129938 ],
+//     quaternion: [ 0, 0, 0, 1 ],
+//   },
+//   ...,
+// ]
+```
+
 <!--
 # Related projects
 * (todo)vpvp-threejs

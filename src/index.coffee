@@ -35,5 +35,39 @@ class VpvpVpd
 
     {header,bones}
 
+  mangle: (pose)->
+    data= []
+
+    for bone in pose.bones
+      need= no
+
+      p= bone.position
+      need= yes unless p[0] is 0 and p[1] is 0 and p[2] is 0
+
+      q= bone.quaternion
+      need= yes unless q[0] is 0 and q[1] is 0 and q[2] is 0 and q[3] is 1
+
+      if need
+        data.push bone.name
+        data.push vector for vector in bone.position
+        data.push vector for vector in bone.quaternion
+
+    data
+
+  restore: (data)->
+    bones= []
+
+    i= 0
+    while data[i]
+      bone=
+        name: data[i]
+        position: data[i+1..i+3]
+        quaternion: data[i+4..i+7]
+      bones.push bone
+
+      i+= 8
+
+    bones
+
 module.exports= new VpvpVpd
 module.exports.VpvpVpd= VpvpVpd

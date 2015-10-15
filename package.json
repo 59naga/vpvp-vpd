@@ -1,6 +1,6 @@
 {
   "name": "vpvp-vpd",
-  "version": "0.0.0-alpha",
+  "version": "0.0.0-beta",
   "description": "MikuMikuDance Vocaloid-Pose-Data(.vpd) Parser",
 
   "main": "lib",
